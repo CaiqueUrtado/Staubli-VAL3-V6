@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<programList xmlns="ProgramNameSpace" >
+  <program name="iniciar" public="false" >
+    <description />
+    <paramSection/>
+    <localSection>
+      <local name="puntoin" type="point" size="2" />
+    </localSection>
+    <source>
+      <code>begin
+  userPage()
+  cls()
+  //Iniciando Variables
+  //
+  bSalir=false
+  bDibuja=false
+  bEsperaCinta=false
+  bFin=false
+  //
+  nTipoPieza=1
+  nMovimientos=0
+  //
+  sEstado=&quot;listo&quot;
+  sCarEnviados=&quot;&quot;
+  sCarRecibidos=&quot;&quot;
+  //
+  dioLink(dSensorCinta,io:bIn0)
+  dioLink(dMotorCinta,io:bOut0)
+  sioLink(siPort,io:robot)
+  //
+  puntoin[0]=appro(pSensor,trsfAleja[1])
+  puntoin[1]=here(tPinza,world[0])
+  //
+  gotoxy(0,0)
+  put(&quot;Iniciando...&quot;)
+  if !isPowered()
+    gotoxy(0,1)
+    put(&quot;Enchufe la potencia al brazo...&quot;)
+    wait(isPowered())
+    gotoxy(0,1)
+    put(&quot;Potencia del brazo enchufada!  &quot;)
+  else
+    gotoxy(0,1)
+    put(&quot;Potencia del brazo enchufada!&quot;)
+  endIf
+  if distance(position(puntoin[0],world[0]),position(puntoin[1],world[0]))&gt;50
+    switch workingMode()
+      case 3
+        gotoxy(0,2)
+        put(&quot;Pulse Hold para posicionar el brazo...&quot;)
+      break
+      default
+        gotoxy(0,2)
+        put(&quot;Mantenga Hold para posicionar el brazo...&quot;)
+      break
+    endSwitch
+    movej(puntoin[0],tPinza,mNomSpeed)
+    waitEndMove()
+  endIf
+end
+
+      </code>
+    </source>
+  </program>
+</programList>

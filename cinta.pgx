@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<programList xmlns="ProgramNameSpace" >
+  <program name="cinta" public="false" >
+    <description />
+    <paramSection/>
+    <localSection/>
+    <source>
+      <code>begin
+  // Tarea que controla la cinta
+  //
+  // dSensorCinta:  señal del sensor de la cinta
+  // bHaypieza:     ?indica presencia de pieza?
+  // bEsperaCinta:  controlada por monitor
+  //
+  while !bSalir
+    bHayPieza=dSensorCinta
+    dMotorCinta=!bEsperaCinta and !bHayPieza
+    delay(0)
+  endWhile
+  dMotorCinta=false
+end
+
+      </code>
+    </source>
+  </program>
+</programList>

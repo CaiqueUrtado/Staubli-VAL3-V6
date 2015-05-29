@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<programList xmlns="ProgramNameSpace" >
+  <program name="recibir" public="false" >
+    <description />
+    <paramSection/>
+    <localSection>
+      <local name="nIndex" type="num" size="1" />
+      <local name="nLength" type="num" size="1" />
+      <local name="nCarRecibidos" type="num" size="40" />
+    </localSection>
+    <source>
+      <code>begin
+  while !bSalir
+    nLength=sioGet(siPort,nCarRecibidos)
+    if nLength&gt;0
+      sCarRecibidos=&quot;&quot;
+      for nIndex=0 to nLength-1
+        sCarRecibidos=sCarRecibidos+chr(nCarRecibidos[nIndex])
+      endFor
+      if left(sCarRecibidos,1)==&quot;1&quot;
+        sCarRecibidos=right(sCarRecibidos,len(sCarRecibidos)-1)
+        if len(sCarRecibidos)&gt;7
+          if left(sCarRecibidos,7)==&quot;dibuja:&quot;
+            sPalabra=right(sCarRecibidos,len(sCarRecibidos)-7)
+            bDibuja=true
+          endIf
+        else
+          switch sCarRecibidos
+            case &quot;salir&quot;
+              bSalir=true
+            break
+            case &quot;dibuja&quot;
+              bDibuja=true
+            break
+            case &quot;pieza&quot;
+              bSinPieza=true
+            break
+            case &quot;&quot;
+            break
+            default
+              sPalabra=sCarRecibidos
+            break
+          endSwitch
+        endIf
+      endIf
+    endIf
+    delay(0)
+  endWhile
+end
+
+      </code>
+    </source>
+  </program>
+</programList>

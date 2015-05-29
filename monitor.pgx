@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<programList xmlns="ProgramNameSpace" >
+  <program name="monitor" public="false" >
+    <description />
+    <paramSection/>
+    <localSection/>
+    <source>
+      <code>begin
+  while !bSalir
+    bEsperaCinta=distance(position(pRecojer,world[0]),position(here(tPinza,world[0]),world[0]))&lt;=2*nAltura[nTipoPieza]
+    if !isSettled()
+      sEstado=&quot;en movimiento...&quot;
+    else
+      if bHayPieza==false and bDibuja==true and bSinPieza==false
+        sEstado=&quot;esperando pieza...&quot;
+      else
+        if isPowered()
+          if workingMode()==3
+            sEstado=&quot;pulse hold para mover...&quot;
+          else
+            sEstado=&quot;sujete hold para mover...&quot;
+          endIf
+        endIf
+      endIf
+      if bDibuja==true and !isPowered()
+        sEstado=&quot;enchufe la potencia...&quot;
+      endIf
+      if bDibuja==false
+        sEstado=&quot;esperando usuario...&quot;
+      endIf
+    endIf
+    delay(0.5)
+  endWhile
+end
+
+      </code>
+    </source>
+  </program>
+</programList>

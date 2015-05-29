@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<programList xmlns="ProgramNameSpace" >
+  <program name="numero" public="false" >
+    <description />
+    <paramSection/>
+    <localSection>
+      <local name="nIndexsegmento" type="num" size="1" />
+      <local name="nMask" type="num" size="1" />
+      <local name="ndigitos" type="num" size="1" />
+      <local name="nIndexdigito" type="num" size="1" />
+      <local name="textuser" type="string" size="1" />
+      <local name="code" type="num" size="4" />
+      <local name="nEspaciado" type="num" size="1" />
+    </localSection>
+    <source>
+      <code>begin
+  while !bSalir
+    if bDibuja==true
+      if len(sPalabra)&gt;4
+        sPalabra=left(sPalabra,4)
+      endIf
+      //vuelve el frameplace al primero digito, por si ya se ejecutaran otros movimientos
+      fColocar.trsf=pOrigen.trsf
+      //haz el calculo de las trsf con relacion al tamaño de la pieza
+      call correcionpuntos(nTipoPieza,nEspaciado)
+      //empieza el ciclo de movimientos
+      fColocar.trsf.x=fColocar.trsf.x-nEspaciado*len(sPalabra)
+      textuser=sPalabra
+      for nIndexdigito=0 to len(sPalabra)-1
+        code[nIndexdigito]=nCodigoCar[asc(right(textuser,1),0)]
+        textuser=left(textuser,len(sPalabra)-nIndexdigito-1)
+      endFor
+      for nIndexdigito=len(sPalabra)-1 to 0 step -1
+        fColocar.trsf.x=fColocar.trsf.x+nEspaciado
+        for nIndexsegmento=1 to 7
+          nMask=power(2,nIndexsegmento-1)
+          if bAnd(code[nIndexdigito],nMask)==nMask
+            wait(bHayPieza or bSinPieza)
+            call robotget(trsfAleja[1],tPinza,mNomSpeed,pRecojer,mLento)
+            call robotplace(trsfAleja[0],tPinza,mLento,appro(pColocar,trsfCorrecion[nIndexsegmento]),pRecojer,mNomSpeed,trsfAleja[1])
+            nMovimientos=nMovimientos+1
+          endIf
+        endFor
+      endFor
+    endIf
+    bDibuja=false
+    bSinPieza=false
+    delay(0)
+  endWhile
+end
+
+      </code>
+    </source>
+  </program>
+</programList>

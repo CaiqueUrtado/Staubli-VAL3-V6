@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<programList xmlns="ProgramNameSpace" >
+  <program name="botones" public="false" >
+    <description />
+    <paramSection>
+      <param name="n" type="num" byVal="true" />
+      <param name="text" type="string" byVal="true" />
+    </paramSection>
+    <localSection/>
+    <source>
+      <code>begin
+  // Imprime el texto de los botones f1 a f8 en la linea 13
+  //
+  // n:     indice del boton
+  // text:  texto del boton
+  //
+  gotoxy((n-1)*5,13)
+  n=len(text)
+  if n&gt;4
+    put(left(text,3)+&quot;.&quot;)
+  else
+    put(text)
+  endIf
+end
+
+      </code>
+    </source>
+  </program>
+</programList>

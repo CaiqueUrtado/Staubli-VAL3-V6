@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<programList xmlns="ProgramNameSpace" >
+  <program name="interfaz" public="false" >
+    <description />
+    <paramSection/>
+    <localSection>
+      <local name="nKey" type="num" size="1" />
+      <local name="nIndex" type="num" size="1" />
+      <local name="nLineaMenu" type="num" size="1" />
+    </localSection>
+    <source>
+      <code>begin
+  //
+  // Tarea responsable interface de usuario
+  //
+  // bFin: control de interface
+  // bSalir: control de las otras tareas
+  // nLineaMenu: indica la linea del cursor
+  //
+  nLineaMenu=2
+  while !bFin
+    cls()
+    call imprtexto(0,0,&quot;Status: &quot;+sEstado)
+    call imprtexto(0,1,&quot;Numero de Movimientos: &quot;+toString(&quot;&quot;,nMovimientos))
+    call imprtexto(0,2,&quot;Caracteres a Dibujar: &quot;+sPalabra)
+    call imprtexto(0,3,&quot;Tipo de Pieza: &quot;+toString(&quot;&quot;,nTipoPieza))
+    call imprtexto(1,4,&quot;Long.: &quot;+toString(&quot;&quot;,nLongitud[nTipoPieza]))
+    call imprtexto(1,5,&quot;Anch.: &quot;+toString(&quot;&quot;,nAnchura[nTipoPieza]))
+    call imprtexto(1,6,&quot;Altu.: &quot;+toString(&quot;&quot;,nAltura[nTipoPieza]))
+    call imprtexto(0,7,&quot;Gap: &quot;+toString(&quot;&quot;,nSeparacion))
+    call botones(1,&quot;rst.&quot;)   
+    call botones(2,&quot;pieza&quot;)
+    call botones(3,&quot;dibujar&quot;)
+    call botones(8,&quot;salir&quot;)
+    //flecha que indica la posicion en el menu
+    gotoxy(nLongitudLinea[nLineaMenu]+1,nLineaMenu)
+    put(&quot;&lt;-&quot;)
+    nKey=getKey()
+    switch nKey
+      //flecha abajo
+      case 266
+        nLineaMenu=(nLineaMenu+1)%12
+        while nLineaMenu&lt;2 or nLongitudLinea[nLineaMenu]==0
+          nLineaMenu=(nLineaMenu+1)%12
+        endWhile
+      break
+      //flecha arriba
+      case 261
+        nLineaMenu=sel(nLineaMenu==0,12,(nLineaMenu-1)%12)
+        while nLineaMenu&lt;2 or nLongitudLinea[nLineaMenu]==0
+          nLineaMenu=sel(nLineaMenu==0,12,(nLineaMenu-1)%12)
+        endWhile
+      break
+      //editar los datos
+      case 270
+        call editar(nLineaMenu)
+      break
+      //Resetea el num. de movimientos
+      case 271
+        nMovimientos=0
+      break
+	  //Flag que supone el mismo senal del sensor de la cinta
+      case 272
+        bSinPieza=!bSinPieza
+      break
+      //Inicia el dibujo
+      case 273
+        bDibuja=true
+      break
+      //Termina el programa
+      case 278
+        bSalir=true
+      break
+    endSwitch
+    /////////////////////
+    // Tarea de salida //
+    /////////////////////
+    if bSalir
+      cls()
+      gotoxy(9,7)
+      put(&quot;Finalizando tareas...&quot;)
+      wait((taskStatus(&quot;enviar&quot;)==-1) and (taskStatus(&quot;recibir&quot;)==-1) and (taskStatus(&quot;monitor&quot;)==-1) and (taskStatus(&quot;cinta&quot;)==-1) and (taskStatus(&quot;numero&quot;)==-1))
+      cls()
+      gotoxy(10,7)
+      put(&quot;Tareas finalizadas!&quot;)
+      bFin=true
+    endIf
+    delay(0.1)
+  endWhile
+end
+
+      </code>
+    </source>
+  </program>
+</programList>

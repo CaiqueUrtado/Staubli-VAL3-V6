@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<programList xmlns="ProgramNameSpace" >
+  <program name="editar" public="false" >
+    <description />
+    <paramSection>
+      <param name="nLineaMenu" type="num" byVal="true" />
+    </paramSection>
+    <localSection>
+      <local name="i" type="num" size="1" />
+    </localSection>
+    <source>
+      <code>begin
+  // program SuprVarNum(num nLineaMenu,num nDato)
+  //   num i
+  //	begin
+  //		gotoxy(nLongitudLinea[nLineaMenu]-len(toString(&quot;.2&quot;,nDato)),nLineaMenu)
+  //		for i=1 to len(toString(&quot;.2&quot;,dato))-1
+  //		  put(&quot; &quot;)
+  //		endFor
+  //    end
+  // program SuprVarText(num nLineaMenu,string text)
+  //    num i
+  //	begin
+  //	    gotoxy(nLongitudLinea[nLineaMenu]-len(text),nLineaMenu)
+  //        for i=1 to len(text)-1
+  //		  put(&quot; &quot;)
+  //        endFor
+  //	end
+  //
+  switch nLineaMenu
+    case 2
+      gotoxy(nLongitudLinea[nLineaMenu]-len(sPalabra),nLineaMenu)
+      for i=1 to len(sPalabra)-1
+        put(&quot; &quot;)
+      endFor
+      get(sPalabra)
+    break
+    case 3
+      gotoxy(nLongitudLinea[nLineaMenu]-len(toString(&quot;.2&quot;,nTipoPieza)),nLineaMenu)
+      for i=1 to len(toString(&quot;.2&quot;,nTipoPieza))-1
+        put(&quot; &quot;)
+      endFor
+      get(nTipoPieza)
+    break
+    case 4
+      gotoxy(nLongitudLinea[nLineaMenu]-len(toString(&quot;.2&quot;,nLongitud[nTipoPieza])),nLineaMenu)
+      for i=1 to len(toString(&quot;.2&quot;,nLongitud[nTipoPieza]))-1
+        put(&quot; &quot;)
+      endFor
+      get(nLongitud[nTipoPieza])
+    break
+    case 5
+      gotoxy(nLongitudLinea[nLineaMenu]-len(toString(&quot;.2&quot;,nAnchura[nTipoPieza])),nLineaMenu)
+      for i=1 to len(toString(&quot;.2&quot;,nAnchura[nTipoPieza]))-1
+        put(&quot; &quot;)
+      endFor
+      get(nAnchura[nTipoPieza])
+    break
+    case 6
+      gotoxy(nLongitudLinea[nLineaMenu]-len(toString(&quot;.2&quot;,nAltura[nTipoPieza])),nLineaMenu)
+      for i=1 to len(toString(&quot;.2&quot;,nAltura[nTipoPieza]))-1
+        put(&quot; &quot;)
+      endFor
+      get(nAltura[nTipoPieza])
+    break
+    case 7
+      gotoxy(nLongitudLinea[nLineaMenu]-len(toString(&quot;.2&quot;,nSeparacion)),nLineaMenu)
+      for i=1 to len(toString(&quot;.2&quot;,nSeparacion))-1
+        put(&quot; &quot;)
+      endFor
+      get(nSeparacion)
+    break
+    default
+    break
+  endSwitch
+end
+
+      </code>
+    </source>
+  </program>
+</programList>

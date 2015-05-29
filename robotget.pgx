@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<programList xmlns="ProgramNameSpace" >
+  <program name="robotget" public="false" >
+    <description />
+    <paramSection>
+      <param name="trsfRecoje" type="trsf" byVal="true" />
+      <param name="tHerramienta" type="tool" byVal="true" />
+      <param name="mVelAproximar" type="mdesc" byVal="true" />
+      <param name="pRecoje" type="point" byVal="true" />
+      <param name="mVelRecojer" type="mdesc" byVal="true" />
+    </paramSection>
+    <localSection/>
+    <source>
+      <code>begin
+  //
+  // Se aproxima del punto pRecojer con la trsfAproximar
+  // Llega al punto pRecojer con la tHerramienta abierta y luego la cierra
+  // Vuelve a la aproximacion de pRecojer
+  //
+  open(tHerramienta)
+  movej(appro(pRecoje,trsfRecoje),tHerramienta,mVelAproximar)
+  movel(pRecoje,tHerramienta,mVelRecojer)
+  close(tHerramienta)
+  movel(appro(pRecoje,trsfRecoje),tHerramienta,mVelRecojer)
+  waitEndMove()
+end
+
+      </code>
+    </source>
+  </program>
+</programList>

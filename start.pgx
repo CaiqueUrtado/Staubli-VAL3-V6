@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<programList xmlns="ProgramNameSpace" >
+  <program name="start" public="false" >
+    <description />
+    <paramSection/>
+    <localSection/>
+    <source>
+      <code>begin
+  call iniciar()
+  taskCreate &quot;interfaz&quot;,100,interfaz()
+  taskCreate &quot;cinta&quot;,100,cinta()
+  taskCreate &quot;numero&quot;,100,numero()
+  taskCreate &quot;enviar&quot;,100,enviar()
+  taskCreate &quot;recibir&quot;,100,recibir()
+  taskCreate &quot;monitor&quot;,100,monitor()
+end
+
+      </code>
+    </source>
+  </program>
+</programList>

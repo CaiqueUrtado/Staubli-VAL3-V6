@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<programList xmlns="ProgramNameSpace" >
+  <program name="imprtexto" public="false" >
+    <description />
+    <paramSection>
+      <param name="x" type="num" byVal="true" />
+      <param name="y" type="num" byVal="true" />
+      <param name="text" type="string" byVal="true" />
+    </paramSection>
+    <localSection/>
+    <source>
+      <code>begin
+  // Imprime el texto en las coordinadas y asigna el tamaño a su longitud
+  //
+  // X y Y: coordinadas
+  // text:  texto a imprimir
+  //
+  gotoxy(x,y)
+  put(text)
+  nLongitudLinea[y]=len(text)
+end
+
+      </code>
+    </source>
+  </program>
+</programList>

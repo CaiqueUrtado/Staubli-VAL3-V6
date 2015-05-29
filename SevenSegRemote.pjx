@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<project xmlns="ProjectNameSpace" >
+  <parameters version="s6.8" stackSize="5000" millimeterUnit="true" />
+  <programSection>
+    <program file="botones.pgx" />
+    <program file="cinta.pgx" />
+    <program file="correcionpuntos.pgx" />
+    <program file="editar.pgx" />
+    <program file="enviar.pgx" />
+    <program file="imprtexto.pgx" />
+    <program file="iniciar.pgx" />
+    <program file="interfaz.pgx" />
+    <program file="monitor.pgx" />
+    <program file="numero.pgx" />
+    <program file="recibir.pgx" />
+    <program file="robotget.pgx" />
+    <program file="robotplace.pgx" />
+    <program file="start.pgx" />
+    <program file="stop.pgx" />
+  </programSection>
+  <dataSection>
+    <data file="SevenSegRemote.dtx" />
+  </dataSection>
+  <aliasSection>
+    <alias name="io" interface="io" autoload="true" password="" />
+  </aliasSection>
+</project>
